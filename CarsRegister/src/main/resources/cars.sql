@@ -1,0 +1,1 @@
+INSERT INTO cars (id, brand, model, constructionYear, horsePower) VALUES (1,bmw,e46,2006,200);

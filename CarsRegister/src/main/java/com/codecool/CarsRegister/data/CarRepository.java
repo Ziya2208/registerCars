@@ -8,7 +8,6 @@ import java.util.List;
 
 @Repository
 public interface CarRepository extends JpaRepository<Car,Integer> {
-    public Car saveCar(Car car);
-    public List<Car> getAllCars();
+    List<Car> findAll();
 
 }

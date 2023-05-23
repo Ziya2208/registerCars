@@ -7,14 +7,17 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public abstract class CarService implements CarRepository {
-    private CarRepository carRepository;
+public class CarService{
+    private final CarRepository carRepository;
 
-    @Override
-    public Car saveCar(Car car) {
-        return carRepository.save(car);
+    protected CarService(CarRepository carRepository) {
+        this.carRepository = carRepository;
     }
-    @Override
+
+    public void saveCar(Car car) {
+        carRepository.save(car);
+    }
+
     public List<Car> getAllCars() {
         return carRepository.findAll();
     }
