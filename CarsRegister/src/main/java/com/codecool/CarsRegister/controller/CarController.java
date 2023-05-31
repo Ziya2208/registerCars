@@ -13,6 +13,10 @@ import java.util.List;
 public class CarController {
     public CarService carService;
 
+    public CarController(CarService carService) {
+        this.carService = carService;
+    }
+
     @PostMapping("/add")
     public String addCar(@RequestBody Car car){
         carService.saveCar(car);
