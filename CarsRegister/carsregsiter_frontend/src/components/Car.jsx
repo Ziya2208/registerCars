@@ -1,16 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import { TextField } from '@material-ui/core/TextField';
-import { Container ,Paper,Button} from '@material-ui/core';
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    '& > *': {
-      margin: theme.spacing(1),
-     
-    },
-  },
-}));
+import TextField from '@mui/material/TextField';
+import { Container, Paper, Button} from '@mui/material';
 
 export default function Car() {
     const paperStyle={padding:'50px 20px', width:600,margin:"20px auto"}
@@ -19,7 +9,6 @@ export default function Car() {
     const[constructionYear,setConstructionYear]=useState('')
     const[horsePower,setHorsePower]=useState('')
     const[cars,setCars]=useState([])
-     const classes = useStyles();
 
   const handleClick=(e)=>{
     e.preventDefault()
@@ -49,7 +38,7 @@ useEffect(()=>{
         <Paper elevation={3} style={paperStyle}>
             <h1 style={{color:"blue"}}><u>Add Car</u></h1>
 
-    <form className={classes.root} noValidate autoComplete="off">
+    <form noValidate autoComplete="off">
     
       <TextField id="outlined-basic" label="Car Brand" variant="outlined" fullWidth 
       value={brand}
@@ -73,7 +62,7 @@ useEffect(()=>{
     </form>
    
     </Paper>
-    <h1>Students</h1>
+    <h1>Cars</h1>
 
     <Paper elevation={3} style={paperStyle}>
 

@@ -11,7 +11,7 @@ import java.util.List;
 @RequestMapping("/cars")
 @CrossOrigin
 public class CarController {
-    private CarService carService;
+    public CarService carService;
 
     @PostMapping("/add")
     public String addCar(@RequestBody Car car){
