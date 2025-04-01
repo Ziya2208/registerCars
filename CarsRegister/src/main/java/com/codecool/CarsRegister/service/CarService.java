@@ -21,4 +21,8 @@ public class CarService{
     public List<Car> getAllCars() {
         return carRepository.findAll();
     }
+
+    public void deleteCar(Long id) {
+        System.out.println("🛑 DELETE Request received with ID: " + id);
+        carRepository.deleteById(id); }
 }
