@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import TextField from '@mui/material/TextField';
-import { Container, Paper, Button } from '@mui/material';
 
 export default function Car() {
-  const paperStyle = { padding: '50px 20px', width: 600, margin: "20px auto" };
   const [brand, setBrand] = useState('');
   const [model, setModel] = useState('');
   const [constructionYear, setConstructionYear] = useState('');
@@ -21,12 +18,10 @@ export default function Car() {
     }).then(() => {
       console.log("New Car added");
 
-      // Re-fetch the list of cars
       fetch("http://localhost:8080/cars/getAll")
         .then(res => res.json())
         .then(data => setCars(data));
 
-      // Clear form fields
       setBrand('');
       setModel('');
       setConstructionYear('');
@@ -55,68 +50,65 @@ export default function Car() {
   }, []);
 
   return (
-    <Container>
-      <Paper elevation={3} style={paperStyle}>
-        <h1 style={{ color: "blue" }}><u>Add Car</u></h1>
-        <form noValidate autoComplete="off">
-          <TextField
-            id="outlined-basic"
-            label="Car Brand"
-            variant="outlined"
-            fullWidth
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white py-10 px-4">
+      <div className="max-w-xl mx-auto bg-white text-gray-800 rounded-xl shadow-xl p-8 mb-10">
+        <h1 className="text-3xl font-bold text-center text-indigo-600 mb-6 underline">Add Car</h1>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <input
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400"
+            placeholder="Car Brand"
             value={brand}
             onChange={(e) => setBrand(e.target.value)}
-            style={{ marginBottom: 10 }}
           />
-          <TextField
-            id="outlined-basic"
-            label="Car Model"
-            variant="outlined"
-            fullWidth
+          <input
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400"
+            placeholder="Car Model"
             value={model}
             onChange={(e) => setModel(e.target.value)}
-            style={{ marginBottom: 10 }}
           />
-          <TextField
-            id="outlined-basic"
-            label="Construction Year"
-            variant="outlined"
-            fullWidth
+          <input
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400"
+            placeholder="Construction Year"
             value={constructionYear}
             onChange={(e) => setConstructionYear(e.target.value)}
-            style={{ marginBottom: 10 }}
           />
-          <TextField
-            id="outlined-basic"
-            label="Horse Power"
-            variant="outlined"
-            fullWidth
+          <input
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400"
+            placeholder="Horse Power"
             value={horsePower}
             onChange={(e) => setHorsePower(e.target.value)}
-            style={{ marginBottom: 10 }}
           />
-          <Button type="sumbit" variant="contained" color="secondary" onClick={handleSubmit}>
+          <button
+            type="submit"
+            className="w-full bg-indigo-600 text-white font-semibold py-2 rounded-lg shadow-md hover:bg-indigo-700 transition"
+          >
             Submit Car
-          </Button>
+          </button>
         </form>
-      </Paper>
-
-      <h1>Cars</h1>
-      <Paper elevation={3} style={paperStyle}>
+      </div>
+      <h1 className="text-3xl font-bold text-center mb-6">Cars</h1>
+      <div className="max-w-xl mx-auto space-y-4">
         {cars.map(car => (
-          <Paper key={car.id} elevation={6} style={{ margin: "10px", padding: "15px", textAlign: "left" }}>
-            Brand: {car.brand} <br />
-            Model: {car.model} <br />
-            Year: {car.constructionYear} <br />
-            HP: {car.horsePower}
-            <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center', height: '100px' }}>
-            <Button type="button" variant="contained" color="secondary" onClick={() => handleDelete(car.id)}>
-              Delete Car
-            </Button>           
+          <div
+            key={car.id}
+            className="bg-white text-gray-800 p-6 rounded-xl shadow-md transition hover:shadow-lg"
+          >
+            <p><strong>Brand:</strong> {car.brand}</p>
+            <p><strong>Model:</strong> {car.model}</p>
+            <p><strong>Year:</strong> {car.constructionYear}</p>
+            <p><strong>HP:</strong> {car.horsePower}</p>
+            <div className="mt-4">
+              <button
+                type="button"
+                className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition"
+                onClick={() => handleDelete(car.id)}
+              >
+                Delete Car
+              </button>
             </div>
-          </Paper>
+          </div>
         ))}
-      </Paper>
-    </Container>
+      </div>
+    </div>
   );
 }
