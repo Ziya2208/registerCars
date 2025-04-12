@@ -80,7 +80,7 @@ export default function Car() {
           />
           <button
             type="submit"
-            className="w-full bg-indigo-600 text-white font-semibold py-2 rounded-lg shadow-md hover:bg-indigo-700 transition"
+            className="w-full bg-indigo-600 text-black font-semibold py-2 rounded-lg shadow-md hover:bg-indigo-700 transition"
           >
             Submit Car
           </button>
@@ -100,7 +100,7 @@ export default function Car() {
             <div className="mt-4">
               <button
                 type="button"
-                className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition"
+                className="bg-red-600 text-black px-4 py-2 rounded hover:bg-red-700 transition"
                 onClick={() => handleDelete(car.id)}
               >
                 Delete Car
